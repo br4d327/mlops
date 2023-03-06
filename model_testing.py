@@ -12,6 +12,7 @@ if __name__ == '__main__':
 	with open('model.pkl', 'rb') as f:
 		model = pickle.load(f)
 
+	test['t'] = scaler.transform(test[['t']])
 	test.columns = ['ds', 'y']
 	test['yhat'] = model.predict(test[['ds']])['yhat']
 	score = mean_absolute_error(test['y'], test['yhat'])
