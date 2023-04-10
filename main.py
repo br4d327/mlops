@@ -3,7 +3,9 @@ import pandas as pd
 import os
 import pickle
 from sklearn.preprocessing import RobustScaler
+from sklearn.metrics import mean_absolute_error
 from prophet import Prophet
+
 
 
 NAME_TRAIN = 'train.csv'
@@ -68,19 +70,19 @@ def model_preparation():
 
 def model_testing():
     print('evaluate')
-	test = pd.read_csv('test/test.csv')
-
-	with open('dump_scaler.pkl', 'rb') as f:
-		scaler = pickle.load(f)
-
-	with open('model.pkl', 'rb') as f:
-		model = pickle.load(f)
-
-	test['t'] = scaler.transform(test[['t']])
-	test.columns = ['ds', 'y']
-	test['yhat'] = model.predict(test[['ds']])['yhat']
-	score = mean_absolute_error(test['y'], test['yhat'])
-	print('MAE score: ', score)
+    test = pd.read_csv(f'test/test.csv')
+    
+    with open('dump_scaler.pkl', 'rb') as f:
+        scaler = pickle.load(f)
+        
+    with open('model.pkl', 'rb') as f:
+        model = pickle.load(f)
+        
+    test['t'] = scaler.transform(test[['t']])
+    test.columns = ['ds', 'y']
+    test['yhat'] = model.predict(test[['ds']])['yhat']
+    score = mean_absolute_error(test['y'], test['yhat'])
+    print('MAE score: ', score)
 
 
 def gen_temp(qwe):
