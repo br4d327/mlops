@@ -1,0 +1,187 @@
+Started by user Lev Saenko
+Running as SYSTEM
+Building in workspace /home/odmin/.jenkins/workspace/Docker build and run
+The recommended git tool is: NONE
+using credential 13d9c50a-4c65-4855-8c60-a73420d7f21e
+Cloning the remote Git repository
+Cloning repository https://github.com/Basserti/mlops.git
+ > git init /home/odmin/.jenkins/workspace/Docker build and run # timeout=10
+Fetching upstream changes from https://github.com/Basserti/mlops.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.30.2'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+You're using 'Known hosts file' strategy to verify ssh host keys, but your known_hosts file does not exist, please go to 'Manage Jenkins' -> 'Configure Global Security' -> 'Git Host Key Verification Configuration' and configure host key verification.
+ > git fetch --tags --force --progress -- https://github.com/Basserti/mlops.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/Basserti/mlops.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/lab3^{commit} # timeout=10
+Checking out Revision 8c923ad33ad9a5cd3c7d3619037e0044ad87b794 (refs/remotes/origin/lab3)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 8c923ad33ad9a5cd3c7d3619037e0044ad87b794 # timeout=10
+Commit message: "Update Dockerfile"
+First time build. Skipping changelog.
+[Docker build and run] $ /bin/sh -xe /tmp/jenkins14603992488747715081.sh
++ echo Run shell script
+Run shell script
++ docker build -t lab3 -f lab3/Dockerfile .
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.1s
+
+#2 [internal] load .dockerignore
+#2 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 194B 0.5s done
+#1 DONE 0.7s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 2B 0.4s done
+#2 DONE 0.7s
+
+#3 [internal] load metadata for docker.io/library/python:3.10
+#3 DONE 3.5s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.10@sha256:5a71ab8ffc96d7ac9cbe32aff7878371242d36a3038a266941ccdb5c83cc5dd5
+#5 CACHED
+
+#6 [2/5] WORKDIR /model
+#6 DONE 0.5s
+
+#4 [internal] load build context
+#4 transferring context: 69.22kB 0.2s done
+#4 DONE 0.4s
+
+#7 [3/5] COPY lab3/requirements.txt ./requirements.txt
+#7 DONE 0.3s
+
+#8 [4/5] RUN pip3 install -r requirements.txt
+#8 5.799 Collecting numpy
+#8 6.143   Downloading numpy-1.24.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+#8 9.025      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 5.4 MB/s eta 0:00:00
+#8 9.388 Collecting pandas
+#8 9.458   Downloading pandas-2.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+#8 11.51      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 5.5 MB/s eta 0:00:00
+#8 11.78 Collecting scikit-learn
+#8 11.85   Downloading scikit_learn-1.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.6 MB)
+#8 12.87      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.6/9.6 MB 9.5 MB/s eta 0:00:00
+#8 13.00 Collecting prophet
+#8 13.07   Downloading prophet-1.1.2-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.9 MB)
+#8 14.68      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.9/8.9 MB 5.5 MB/s eta 0:00:00
+#8 14.83 Collecting plotly
+#8 14.90   Downloading plotly-5.14.1-py2.py3-none-any.whl (15.3 MB)
+#8 17.23      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.3/15.3 MB 5.5 MB/s eta 0:00:00
+#8 17.56 Collecting python-dateutil>=2.8.2
+#8 17.63   Downloading python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+#8 17.65      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 247.7/247.7 kB 9.4 MB/s eta 0:00:00
+#8 17.79 Collecting pytz>=2020.1
+#8 17.86   Downloading pytz-2023.3-py2.py3-none-any.whl (502 kB)
+#8 17.91      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 502.3/502.3 kB 10.1 MB/s eta 0:00:00
+#8 18.00 Collecting tzdata>=2022.1
+#8 18.07   Downloading tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+#8 18.11      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.8/341.8 kB 10.4 MB/s eta 0:00:00
+#8 18.27 Collecting joblib>=1.1.1
+#8 18.34   Downloading joblib-1.2.0-py3-none-any.whl (297 kB)
+#8 18.37      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 298.0/298.0 kB 9.3 MB/s eta 0:00:00
+#8 18.45 Collecting threadpoolctl>=2.0.0
+#8 18.52   Downloading threadpoolctl-3.1.0-py3-none-any.whl (14 kB)
+#8 18.78 Collecting scipy>=1.3.2
+#8 18.85   Downloading scipy-1.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.4 MB)
+#8 25.37      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.4/34.4 MB 2.9 MB/s eta 0:00:00
+#8 26.34 Collecting matplotlib>=2.0.0
+#8 26.41   Downloading matplotlib-3.7.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+#8 28.62      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.6/11.6 MB 5.3 MB/s eta 0:00:00
+#8 28.73 Collecting convertdate>=2.1.2
+#8 28.80   Downloading convertdate-2.4.0-py3-none-any.whl (47 kB)
+#8 28.81      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.9/47.9 kB 5.9 MB/s eta 0:00:00
+#8 28.95 Collecting tqdm>=4.36.1
+#8 29.02   Downloading tqdm-4.65.0-py3-none-any.whl (77 kB)
+#8 29.03      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.1/77.1 kB 6.8 MB/s eta 0:00:00
+#8 29.12 Collecting holidays>=0.14.2
+#8 29.19   Downloading holidays-0.22-py3-none-any.whl (412 kB)
+#8 29.29      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 412.6/412.6 kB 4.0 MB/s eta 0:00:00
+#8 29.37 Collecting LunarCalendar>=0.0.9
+#8 29.44   Downloading LunarCalendar-0.0.9-py2.py3-none-any.whl (18 kB)
+#8 29.55 Collecting cmdstanpy>=1.0.4
+#8 29.62   Downloading cmdstanpy-1.1.0-py3-none-any.whl (83 kB)
+#8 29.63      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.2/83.2 kB 9.8 MB/s eta 0:00:00
+#8 29.75 Collecting packaging
+#8 29.82   Downloading packaging-23.0-py3-none-any.whl (42 kB)
+#8 29.82      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.7/42.7 kB 16.1 MB/s eta 0:00:00
+#8 29.93 Collecting tenacity>=6.2.0
+#8 30.00   Downloading tenacity-8.2.2-py3-none-any.whl (24 kB)
+#8 30.19 Collecting pymeeus<=1,>=0.3.13
+#8 30.27   Downloading PyMeeus-0.5.12.tar.gz (5.8 MB)
+#8 31.50      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.8/5.8 MB 4.7 MB/s eta 0:00:00
+#8 31.78   Preparing metadata (setup.py): started
+#8 33.27   Preparing metadata (setup.py): finished with status 'done'
+#8 33.36 Collecting korean-lunar-calendar
+#8 33.43   Downloading korean_lunar_calendar-0.3.1-py3-none-any.whl (9.0 kB)
+#8 33.51 Collecting hijri-converter
+#8 33.58   Downloading hijri_converter-2.2.4-py3-none-any.whl (14 kB)
+#8 33.80 Collecting ephem>=3.7.5.3
+#8 33.87   Downloading ephem-4.1.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.8 MB)
+#8 34.26      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 4.6 MB/s eta 0:00:00
+#8 34.39 Collecting pyparsing>=2.3.1
+#8 34.45   Downloading pyparsing-3.0.9-py3-none-any.whl (98 kB)
+#8 34.47      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.3/98.3 kB 5.7 MB/s eta 0:00:00
+#8 34.61 Collecting kiwisolver>=1.0.1
+#8 34.67   Downloading kiwisolver-1.4.4-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+#8 35.03      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 4.6 MB/s eta 0:00:00
+#8 35.42 Collecting pillow>=6.2.0
+#8 35.49   Downloading Pillow-9.5.0-cp310-cp310-manylinux_2_28_x86_64.whl (3.4 MB)
+#8 36.15      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 5.2 MB/s eta 0:00:00
+#8 36.32 Collecting contourpy>=1.0.1
+#8 36.40   Downloading contourpy-1.0.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (300 kB)
+#8 36.45      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.3/300.3 kB 6.6 MB/s eta 0:00:00
+#8 36.59 Collecting fonttools>=4.22.0
+#8 36.67   Downloading fonttools-4.39.3-py3-none-any.whl (1.0 MB)
+#8 36.85      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 5.7 MB/s eta 0:00:00
+#8 36.94 Collecting cycler>=0.10
+#8 37.00   Downloading cycler-0.11.0-py3-none-any.whl (6.4 kB)
+#8 37.11 Collecting six>=1.5
+#8 37.17   Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+#8 37.35 Building wheels for collected packages: pymeeus
+#8 37.35   Building wheel for pymeeus (setup.py): started
+#8 39.83   Building wheel for pymeeus (setup.py): finished with status 'done'
+#8 39.83   Created wheel for pymeeus: filename=PyMeeus-0.5.12-py3-none-any.whl size=731999 sha256=88c908289a743b40a1393289b8cbd38dd56f3eeeb0be68861522c94429196ab0
+#8 39.83   Stored in directory: /root/.cache/pip/wheels/d6/67/78/aa2e8d108639dd23a5e9e72a4fc88bb44f5541894382712f48
+#8 39.83 Successfully built pymeeus
+#8 40.64 Installing collected packages: pytz, pymeeus, korean-lunar-calendar, ephem, tzdata, tqdm, threadpoolctl, tenacity, six, pyparsing, pillow, packaging, numpy, kiwisolver, joblib, hijri-converter, fonttools, cycler, convertdate, scipy, python-dateutil, plotly, contourpy, scikit-learn, pandas, matplotlib, LunarCalendar, holidays, cmdstanpy, prophet
+#8 94.51 Successfully installed LunarCalendar-0.0.9 cmdstanpy-1.1.0 contourpy-1.0.7 convertdate-2.4.0 cycler-0.11.0 ephem-4.1.4 fonttools-4.39.3 hijri-converter-2.2.4 holidays-0.22 joblib-1.2.0 kiwisolver-1.4.4 korean-lunar-calendar-0.3.1 matplotlib-3.7.1 numpy-1.24.2 packaging-23.0 pandas-2.0.0 pillow-9.5.0 plotly-5.14.1 prophet-1.1.2 pymeeus-0.5.12 pyparsing-3.0.9 python-dateutil-2.8.2 pytz-2023.3 scikit-learn-1.2.2 scipy-1.10.1 six-1.16.0 tenacity-8.2.2 threadpoolctl-3.1.0 tqdm-4.65.0 tzdata-2023.3
+#8 94.51 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 DONE 95.9s
+
+#9 [5/5] COPY . .
+#9 DONE 2.2s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 13.4s done
+#10 writing image sha256:1cb06540f0d1b2389952890d6e6e020cc28dfae3c04974b09c658ec45e5b5de1
+#10 writing image sha256:1cb06540f0d1b2389952890d6e6e020cc28dfae3c04974b09c658ec45e5b5de1 0.2s done
+#10 naming to docker.io/library/lab3
+#10 naming to docker.io/library/lab3 0.1s done
+#10 DONE 13.8s
++ docker run lab3
+11:58:07 - cmdstanpy - INFO - Chain [1] start processing
+11:58:08 - cmdstanpy - INFO - Chain [1] done processing
+Starting data creation
+Checking folders
+train/test split 
+ 1 year for test
+End save train and test datasets
+start scaler fit on train data
+scaler fitted and saved in main folder
+Fitting Prophet
+model saved in main folder
+evaluate
+MAE score:  0.08966224679097524
++ echo End shell script
+End shell script
+Finished: SUCCESS
