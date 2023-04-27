@@ -9,5 +9,5 @@ train = train[['Pclass', 'Sex', 'Age']]
 test  = test[['Pclass', 'Sex', 'Age']]
 
 
-train.to_csv('data/train(PcSexAge).csv')
-test.to_csv('data/test(PcSexAge).csv')
+train.to_csv('data/train.csv')
+test.to_csv('data/test.csv')
