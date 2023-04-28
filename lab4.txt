@@ -105,29 +105,38 @@ head data/train.csv
 echo "---"
 head data/test.csv
 echo "------"
+
+echo ""
+echo "Let's look at the commit ID"
+git log | grep commit
+echo ""
+
 echo "task 6"
-git checkout 7ae32ae
+git checkout c0e6055
 dvc pull
 head data/train.csv
 echo "---"
 head data/test.csv
 echo "------"
+
 echo "task 7"
-git checkout 0cf2144
+git checkout 7fe4154
 dvc pull
 head data/train.csv
 echo "---"
 head data/test.csv
 echo "------"
+
 echo "task 8"
-git checkout a79dd4e
+git checkout 3315076
 dvc pull
 head data/train.csv
 echo "---"
 head data/test.csv
 echo "------"
+
 echo "task 9 / now"
-git checkout 365b0eb
+git checkout 82bf174
 dvc pull
 head data/train.csv
 echo "---"
