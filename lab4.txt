@@ -1,0 +1,136 @@
+echo "Step 1. Install GIT and DVC"
+sudo apt install git
+sudo wget \
+       https://dvc.org/deb/dvc.list \
+       -O /etc/apt/sources.list.d/dvc.list
+wget -qO - https://dvc.org/deb/iterative.asc | gpg --dearmor > packages.iterative.gpg
+sudo install -o root -g root -m 644 packages.iterative.gpg /etc/apt/trusted.gpg.d/
+rm -f packages.iterative.gpg
+sudo apt update
+sudo apt install dvc
+echo ""
+
+echo "Step 2. Create folder in ../ (root project)"
+cd ~
+mkdir project
+cd project
+mkdir lab4_ml
+cd lab4_ml
+git clone https://github.com/Basserti/mlops.git --branch 'lab4'
+mkdir mlops/lab4
+cd mlops/lab4
+echo ""
+
+echo "Step 3. Setting up folder for work with GIT and DVC"
+cd ..
+cp -a scripts_lab4/. lab4/
+cd lab4
+git init
+echo "---------------"
+dvc init
+mkdir data
+ls -la
+echo ""
+
+echo "Step 4. Setting up GIT repo"
+git status
+echo "---------------"
+echo 'git config --global user.email "you@mail.com"'
+git config --global user.email "bassertils@gmail.com"
+echo 'git config --global user.name "user name"'
+git config --global user.name "Basserti"
+git commit -am "init dvc"
+dvc add data/
+git add data.dvc .gitignore
+dvc config core.autostage true
+git add task6.py task7.py task8.py task9.py requirements.txt .dvc/config
+git status
+echo "---------------"
+dvc status
+git commit -m "Setting up dvc"
+echo ""
+
+echo "Step 5. Setting up remote file storage GDrive"
+echo 'create gdrive for use remote'
+dvc remote add --default remote_gdrive  gdrive://1CO5DBOWyXnRH31c6Ef2WeFqJ0izLwrva
+git add .dvc/config
+git commit -m "Google drive storage added for remote"
+dvc push
+echo ""
+
+echo "Step 6. Create dataset ('Titanic')"
+pip install -r requirements.txt
+python3 task6.py
+dvc commit
+dvc push
+git commit -am "Step 6. Create dataset ('Titanic')"
+git status
+echo "---------------"
+dvc status
+echo ""
+
+echo "Step 7. Create dataset PcSexAge"
+python3 task7.py
+dvc commit
+dvc push
+git commit -am 'Step 7. Create dataset PcSexAge'
+git status
+echo "---------------"
+dvc status
+echo ""
+
+echo "Step 8. Create dataset PcSexAge Age-mean"
+python3 task8.py
+dvc commit
+dvc push
+git commit -am 'Step 8. Create dataset PcSexAge Age-mean'
+git status
+echo "---------------"
+dvc status
+echo ""
+
+echo "Step 9. Create dataset PcSexAge Age-mean OHE-Sex"
+python3 task9.py
+dvc commit
+dvc push
+git commit -am 'Step 9. Create dataset PcSexAge Age-mean OHE-Sex'
+git status
+echo "---------------"
+dvc status
+echo ""
+
+echo "Step 10. Demonstration of different versions"
+echo "Now"
+head data/train.csv
+echo "---"
+head data/test.csv
+echo "------"
+echo "task 6"
+git checkout 7ae32ae
+dvc pull
+head data/train.csv
+echo "---"
+head data/test.csv
+echo "------"
+echo "task 7"
+git checkout 0cf2144
+dvc pull
+head data/train.csv
+echo "---"
+head data/test.csv
+echo "------"
+echo "task 8"
+git checkout a79dd4e
+dvc pull
+head data/train.csv
+echo "---"
+head data/test.csv
+echo "------"
+echo "task 9 / now"
+git checkout 365b0eb
+dvc pull
+head data/train.csv
+echo "---"
+head data/test.csv
+echo ""
+echo ""
