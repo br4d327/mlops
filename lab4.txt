@@ -16,7 +16,7 @@ mkdir project
 cd project
 mkdir lab4_ml
 cd lab4_ml
-git clone https://github.com/Basserti/mlops.git 
+
 mkdir mlops/lab4
 cd mlops/lab4
 echo ""
